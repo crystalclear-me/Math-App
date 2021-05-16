@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'mathlist/style.css' %}">
+    <title>
+        Maths With Crystal - Test your Maths! Result!
+    </title>
+    {% load static %}
+    <script type="text/javascript" src="{%static 'mathlist/indexlist.js'}"></script>
+</head>
+
+<body>
+    <div class="top-nav-div">
+        <nav class="nav-bar">
+            <ul class="nav-bar-list">
+                <a href="{% url 'mathlist:index' %}">
+                    <li>Home</li>
+                </a>
+                <a href="{% url 'mathlist:index' %}#questions">
+                    <li class="active">List</li>
+                </a>
+                <a href="">
+                    <li>Quiz</li>
+                </a>
+            </ul>
+        </nav>
+    </div>
+    <div id="questions" class="questions-div">
+        <h2>Answer : {{ question.question_level }}</h2>
+
+        <div class="question-select">
+            <h3>{{ question.question_text }}</h3>
+
+            <ul class="choice-ans-list">
+                {% for choice in question.choice_set.all %}
+                    {% if choice.correct_answer == True and choice.selection == 1 %} 
+                        <li class="correct">{{ choice.choice_text }} - You got it correct!</li>
+                    {% elif choice.correct_answer == False and choice.selection == 1 %}
+                        <li class="wrong">{{ choice.choice_text }} - Ops, wrong answer!</li>
+                    {% else %}
+                        <li>{{ choice.choice_text }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+</body>
+
+</html>

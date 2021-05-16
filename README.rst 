@@ -1,0 +1,29 @@
+========
+Mathlist
+========
+
+Mathlist is a Django app to conduct Web-based Maths questionaires. For each question,
+visitors can choose between a fixed number of answers.
+
+Detailed documentation is in the "docs" directory.
+
+Quick start
+-----------
+
+1. Add "mathlist" to your INSTALLED_APPS setting like this::
+
+    INSTALLED_APPS = [
+        ...
+        'mathlist.apps.MathlistConfig',
+    ]
+
+2. Include the mathlist URLconf in your project urls.py like this::
+
+    path('mathlist/',include('mathlist.urls')),
+
+3. Run ``python manage.py migrate`` to create the mathlist models.
+
+4. Start the development server and visit http://127.0.0.1:8000/admin/
+   to create a math question and its selection of answers (you'll need the Admin app enabled).
+
+5. Visit http://127.0.0.1:8000/mathlist/ to view the maths questions.
